@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inventory Check</title>
+  <script>
+    function fetchBalance() {
+      var sku = document.getElementById("sku").value;
+      var url = `https://script.google.com/macros/s/AKfycbwHMaX5a0Pm7MqEveNIV1xuUGSdp5319FgTLMoG7a30k2ay0LJ4_pXZzMOM7q_6mNA6Ew/exec?sku=${encodeURIComponent(sku)}`;
+      
+      fetch(url)
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("balance").value = data;
+        });
+    }
+  </script>
+</head>
+<body>
+  <h2>Check Inventory Balance</h2>
+  <form>
+    SKU#: <input type="text" id="sku" oninput="fetchBalance()" />
+    <br>
+    BALANCE: <input type="text" id="balance" readonly />
+    <br>
+    Received/Pulled Qty: <input type="text" id="qty" />
+  </form>
+</body>
+</html>
